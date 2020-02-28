@@ -1,0 +1,9 @@
+<isinclude template="components/modules" />
+<div class="tab-pane ${paymentOption.ID.toLowerCase() + '-content'}" id="${paymentOption.ID.toLowerCase() + '-content'}" role="tabpanel">
+	<fieldset class="payment-form-fields">
+		<input type="hidden" class="form-control" name="${pdict.forms.billingForm.paymentMethod.htmlName}" value="HUMM">
+		<input type="hidden" class="form-control" name="${pdict.customForms.hummForm.isHummUrl.htmlName}" value="${URLUtils.url('HummRedirect-IsHumm')}">
+		<input type="hidden" class="form-control" name="${pdict.customForms.hummForm.redirectHummUrl.htmlName}" value="${URLUtils.url('HummRedirect-Redirect')}">
+		<iscontentasset aid="humm-checkout" />
+	</fieldset>
+</div>

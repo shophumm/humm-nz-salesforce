@@ -1,0 +1,33 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<isset name="merchantID" value="${dw.system.Site.current.preferences.custom.hummMerchantID}" scope="page" />
+<isset name="gatewayURL" value="${dw.system.Site.current.preferences.custom.hummGatewayURL}" scope="page"/>
+
+
+<div class="loader-image"></div>
+<div class="redirect-text">
+	<p>${Resource.msg('redirect.notification.humm','humm',null)}</p><p class="notify-message">${Resource.msg('redirect.message','humm',null)}</p>
+</div>
+<form method="post" action="${gatewayURL}">
+	<input type="hidden" name="x_account_id" value="${merchantID}" />
+	<input type="hidden" name="x_amount" value="${pdict.orderObject.getTotalGrossPrice().toNumberString()}" />
+	<input type="hidden" name="x_currency" value="${pdict.orderObject.getCurrencyCode()}" />
+	<input type="hidden" name="x_reference" value="${pdict.orderObject.orderNo}" />
+	<input type="hidden" name="x_shop_country" value="${pdict.orderObject.getBillingAddress().getCountryCode().toString().toUpperCase()}" />
+	<input type="hidden" name="x_shop_name" value="${dw.system.Site.getCurrent().getID()}" />
+	<input type="hidden" name="x_customer_email" value="${pdict.orderObject.customerEmail ? pdict.orderObject.customerEmail : ''}" />
+	<input type="hidden" name="x_url_callback" value="${URLUtils.https('Callback-HandleResponse','order_id',pdict.orderObject.orderNo,'order_token',pdict.orderObject.getOrderToken())}" />
+	<input type="hidden" name="x_url_cancel" value="${URLUtils.https('Cancel-HandleResponse','order_id',pdict.orderObject.orderNo,'order_token',pdict.orderObject.getOrderToken())}" />
+	<input type="hidden" name="x_url_complete" value="${URLUtils.https('Complete-HandleResponse','order_id',pdict.orderObject.orderNo,'order_token',pdict.orderObject.getOrderToken())}" />
+	<input type="hidden" name="x_signature" value="${pdict.Signature}" />
+	<button type="submit" class=hummsubmit style="display:none;"></button>
+</form>
+<script>
+	jQuery(function(){
+		jQuery('.hummsubmit').click();
+	});
+</script>
+
+

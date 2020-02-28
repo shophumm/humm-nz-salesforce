@@ -1,0 +1,11 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<iscomment>
+    Show the Humm payment widget in PDP
+</iscomment>
+
+<ismodule template="product/components/hummpaymentwidget"
+    name="hummpaymentwidget"
+    attribute="hummprice"
+    attribute="productid" 
+/>

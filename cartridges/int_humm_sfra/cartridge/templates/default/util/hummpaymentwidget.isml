@@ -1,0 +1,13 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<isset name="maxOrderTotalAmount" value="${pdict.maxordertotal ? pdict.maxordertotal : pdict.hummprice}" scope="page" />
+<isif condition="${pdict.hummenable == true && pdict.pricetype != 'range' && pdict.pricetype != 'tiered'}">
+	<div class="hummpaymentwidget_${pdict.productid}"></div>
+	<isif condition="${pdict.hummpaymentwidgettype== 'littleOnly'}">
+		<script data-min="${pdict.minordertotal}" data-max="${maxOrderTotalAmount}" src="${pdict.hummwidgeturl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}&LittleOnly"></script>
+	<iselseif condition="${pdict.hummpaymentwidgettype == 'bigOnly'}">
+		<script data-min="${pdict.minordertotal}" data-max="${maxOrderTotalAmount}" src="${pdict.hummwidgeturl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}&BigOnly"></script>
+	<iselseif condition="${pdict.hummpaymentwidgettype == 'both'}">
+		<script data-min="${pdict.minordertotal}" data-max="${maxOrderTotalAmount}" src="${pdict.hummwidgeturl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}"></script>
+	</isif>
+</isif>

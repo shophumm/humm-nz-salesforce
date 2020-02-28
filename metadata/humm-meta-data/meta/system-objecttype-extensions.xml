@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata xmlns="http://www.demandware.com/xml/impex/metadata/2006-10-31">
+	<type-extension type-id="Order">
+		<custom-attribute-definitions>
+			<attribute-definition attribute-id="isHummOrder">
+                <display-name xml:lang="x-default">Is Humm Order</display-name>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+		</custom-attribute-definitions>
+		<group-definitions>
+			 <attribute-group group-id="Humm">
+                <display-name xml:lang="x-default">Humm</display-name>
+                <attribute attribute-id="isHummOrder"/>
+            </attribute-group>
+		</group-definitions>
+	</type-extension>
+
+	<type-extension type-id="OrderPaymentInstrument">
+		<custom-attribute-definitions>
+            <attribute-definition attribute-id="hummPaidAmount">
+                <display-name xml:lang="x-default">Amount</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+			<attribute-definition attribute-id="hummSettleHistory">
+                <display-name xml:lang="x-default">Settle History</display-name>
+                <type>text</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+			<attribute-definition attribute-id="hummTransactionDate">
+                <display-name xml:lang="x-default">Transaction Date</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="hummTransactionID">
+                <display-name xml:lang="x-default">Humm Transaction ID</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="hummTransactionStatus">
+				<display-name xml:lang="x-default">Humm Transaction Status</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+		</custom-attribute-definitions>
+	</type-extension>
+
+    <type-extension type-id="SitePreferences">
+        <custom-attribute-definitions>
+			<attribute-definition attribute-id="isHummEnabled">
+                <display-name xml:lang="x-default">Is Humm Enabled</display-name>
+                <type>boolean</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+			<attribute-definition attribute-id="hummGatewayKey">
+                <display-name xml:lang="x-default">Gateway Key</display-name>
+                <type>password</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="hummGatewayURL">
+                <display-name xml:lang="x-default">Gateway URL</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="hummMaxOrderTotal">
+                <display-name xml:lang="x-default">Maximum Order Total</display-name>
+                <type>double</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+            </attribute-definition>
+            <attribute-definition attribute-id="hummMerchantID">
+                <display-name xml:lang="x-default">Merchant ID</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+            <attribute-definition attribute-id="hummMinOrderTotal">
+                <display-name xml:lang="x-default">Minimum Order Total</display-name>
+                <type>double</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <default-value>20.0</default-value>
+            </attribute-definition>
+			<attribute-definition attribute-id="hummPaymentWidgetType">
+                <display-name xml:lang="x-default">Payment Widget Type</display-name>
+                <type>enum-of-string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <value-definitions>
+                    <value-definition>
+                        <display xml:lang="x-default">LittleOnly</display>
+                        <value>littleOnly</value>
+                    </value-definition>
+                    <value-definition>
+                        <display xml:lang="x-default">BigOnly</display>
+                        <value>bigOnly</value>
+                    </value-definition>
+                    <value-definition default="true">
+                        <display xml:lang="x-default">LittleOnly &amp; BigOnly</display>
+                        <value>both</value>
+                    </value-definition>
+                </value-definitions>
+            </attribute-definition>
+			<attribute-definition attribute-id="hummRefundEndpoint">
+                <display-name xml:lang="x-default">Refund Endpoint</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+             <attribute-definition attribute-id="hummWidgetURL">
+                <display-name xml:lang="x-default">Widget URL</display-name>
+                <type>string</type>
+                <mandatory-flag>false</mandatory-flag>
+                <externally-managed-flag>false</externally-managed-flag>
+                <min-length>0</min-length>
+            </attribute-definition>
+        </custom-attribute-definitions>
+        <group-definitions>
+            <attribute-group group-id="Integration_Humm">
+                <display-name xml:lang="x-default">Integration Humm</display-name>
+				<attribute attribute-id="isHummEnabled"/>
+                <attribute attribute-id="hummMerchantID"/>
+                <attribute attribute-id="hummGatewayKey"/>
+                <attribute attribute-id="hummGatewayURL"/>
+                <attribute attribute-id="hummRefundEndpoint"/>
+                <attribute attribute-id="hummMinOrderTotal"/>
+                <attribute attribute-id="hummMaxOrderTotal"/>
+                <attribute attribute-id="hummPaymentWidgetType"/>
+                <attribute attribute-id="hummWidgetURL"/>
+            </attribute-group>
+        </group-definitions>
+          
+    </type-extension>
+
+</metadata>

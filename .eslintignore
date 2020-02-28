@@ -1,0 +1,11 @@
+bin/
+cartridges/int_humm_sfra/cartridge/static/
+cartridges/bm_humm/cartridge/static/default/lib/
+cartridges/int_humm_controllers/cartridge/
+documentation/
+metadata/
+node_modules/
+package-lock.json
+package.json
+test/
+webpack.config.js

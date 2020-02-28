@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<extensions xmlns="http://www.demandware.com/xml/bmmodules/2007-12-11" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.demandware.com/xml/bmmodules/2007-12-11 bmext.xsd">
+	<menuitem id="flexigroup_orders_menu" position="99999" site="true">
+		<name xml:lang="x-default">Flexigroup</name>
+		<short_description xml:lang="x-default">
+			Flexigroup Payment Solutions.
+		</short_description>
+		<description xml:lang="x-default">
+			Humm Payment Solution.
+		</description>
+		<icon>icons/star_yellow_add.gif</icon>
+	</menuitem>
+	<menuaction id="customsubmenu_id01" menupath="flexigroup_orders_menu" position="100" site="true">
+		<name xml:lang="x-default">Humm Orders</name>
+		<short_description xml:lang="x-default">
+			Humm orders management.
+		</short_description>
+		<description xml:lang="x-default">
+			Order Listing and Order details management.
+		</description>
+		<!-- no icon specified -->
+		<exec pipeline="Humm" node="OrderList" />
+		<sub-pipelines>
+			<pipeline name="Humm-OrderList" />
+			<pipeline name="Humm-OrderDetails" />
+			<pipeline name="Operations-Action" />
+		</sub-pipelines>
+		<icon>icons/star_yellow_new.gif</icon>
+	</menuaction>
+
+</extensions>

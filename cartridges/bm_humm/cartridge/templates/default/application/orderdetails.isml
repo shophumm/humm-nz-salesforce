@@ -1,0 +1,200 @@
+<isdecorate template="application/MenuFrame">
+<iscontent type="text/html" charset="UTF-8"> 
+<isinclude template="custom/modules" /> 
+<isinclude template="inc/Modules">
+<isset name="orderNo" value="${pdict.CurrentHttpParameterMap.OrderNo.stringValue}" scope ="page"/>
+<isbreadcrumbs bcurl1="${URLUtils.url('Humm-OrderList')}" 
+	bctext1="${Resource.msg('order.list.label','humm',null)}" 
+	bcurl2="${URLUtils.url('Humm-OrderDetails','OrderNo', orderNo)}" 
+	bctext2="${Resource.msg('order.details.label','humm',null)}" />
+
+<isset name="order" value="${dw.order.OrderMgr.getOrder(orderNo)}" scope ="page"/>
+<isloop items="${order.getPaymentInstruments()}" var="paymentInstr" status="loopstate">
+	<isif condition="${paymentInstr.paymentMethod == 'HUMM'}">
+		<isset name="paymentInstrument" value="${paymentInstr}" scope="page"/>
+	</isif>
+</isloop>
+
+<isset name="calendarDate" value="${dw.util.Calendar(order.getCreationDate())}" scope="page"/>
+<isset name="orderCreationDate" value="${dw.util.StringUtils.formatCalendar(dw.util.Calendar(calendarDate), 'yyyy-MM-dd @ HH:mm')}" scope="page"/>
+
+<h1>${Resource.msg('order.details.header','humm',null)+orderNo+' '+Resource.msg('order.details.header2','humm',null)}</h1>
+
+<p>${Resource.msg('order.details.payment.via','humm',null)+ " " + paymentInstrument.paymentMethod + " " + "(" + orderNo + ")" +", "+
+	Resource.msg('order.details.paid.on','humm',null)+ " " + orderCreationDate + ", "+Resource.msg('order.customer.ip','humm',null)+ " " +  (order.remoteHost ? order.remoteHost : Resource.msg('order.customer.ip.available','humm',null))}
+</p>
+<table border="0" cellpadding="4" cellspacing="0" width="100%" class="infobox">
+	<thead>
+		<tr>
+			<th class="table_detail left w" width="40%"> ${Resource.msg('order.details.general','humm',null)} </th>
+			<th class="table_detail left" width="30%">  ${Resource.msg('order.details.billing','humm',null)} </th>
+			<th class="table_detail left e" width="30%"> ${Resource.msg('order.details.shipping','humm',null)} </th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td class="table_detail left s w">
+				${Resource.msg('order.creation.date','humm',null)}<br/>
+				${orderCreationDate} <br/><br/>
+				${Resource.msg('order.status','humm',null)} <br/>
+				${paymentInstrument.custom.hummTransactionStatus} <br/><br/>
+				${Resource.msg('order.customer','humm',null)} <br/>
+				${order.getCustomerName()+" ("+(order.getCustomerNo() ? order.getCustomerNo() : "anonymous" + order.getCustomer().getID())+")"}
+			</td>
+			<td class="table_detail left s">
+					${order.getBillingAddress().fullName}<br>
+					${order.getBillingAddress().address1}<br>
+					${order.getBillingAddress().address2 ? order.getBillingAddress().address2 : ''}
+					${order.getBillingAddress().city+', '+order.getBillingAddress().stateCode+', '+ order.getBillingAddress().countryCode.value.toUpperCase()+" "+order.getBillingAddress().postalCode}<br><br/>
+					<strong>${Resource.msg('order.customer.email','humm',null)}</strong><br/>
+					${order.getCustomerEmail()}<br/><br/>
+					<strong>${Resource.msg('order.customer.phone','humm',null)}</strong><br/>
+					${order.getBillingAddress().phone}
+			 </td>
+			<td class="table_detail left e s">
+				<isloop items="${order.shipments}" var="shipments" status="loopstate">
+					<isset name="shipTo" value="${shipments.shippingAddress}" scope="page"/>
+					${shipTo.fullName}<br/>
+					${shipTo.address1}<br/>
+					${shipTo.city+", "+shipTo.stateCode+", "+shipTo.countryCode.displayValue.toUpperCase()+" "+shipTo.postalCode}
+				</isloop>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" id="filtertableProjects">
+    <thead>
+      <tr>
+    	<th class="table_header left n e s w" nowrap="nowrap" width="5%">${Resource.msg('order.product.qty','humm',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="11%">${Resource.msg('order.product.id','humm',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="20%">${Resource.msg('order.product.name','humm',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="10%">${Resource.msg('order.product.manufacture','humm',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="8%">${Resource.msg('order.product.taxrate','humm',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="16%">${Resource.msg('order.product.unitsaleprice','humm',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="8%">${Resource.msg('order.product.taxbasis','humm',null)}</th>
+    	<th class="table_header left n e s" nowrap="nowrap" width="10%">${Resource.msg('order.product.itemtotal','humm',null)}</th>
+    </tr>	
+    </thead>
+    <tbody>
+	    <isloop items="${order.getAllLineItems()}" var="product" status="loopstate">
+	    	<isif condition="${'productID' in product && product.productID}">
+		     	<tr>
+				    <td class="table_detail left e s w" nowrap="nowrap"><label class="item-label" for="">${'quantityValue' in product ? product.quantityValue.toFixed(0): '1'}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${'productID' in product ? product.productID : ''}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${'productName' in product ? product.productName : product.lineItemText}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for=""></label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${product.taxRate*100+"%"}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${product.getPrice()}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${product.getTaxBasis()}</label></td>
+				    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${product.getNetPrice()}</label></td>
+		    	</tr>
+		    </isif>
+	    </isloop>
+    	<tr>
+		    <td class="table_detail right e w s" colspan="7" nowrap="nowrap"><label class="item-label" for="">${Resource.msg('order.shipment.shipping.cost','humm',null)}</label></td>
+		    <td class="table_detail left e s" nowrap="nowrap"><label class="item-label" for="">${order.getShippingTotalNetPrice()}</label></td>
+		</tr>
+		<tr>
+		    <td class="table_detail bold right e w s" colspan="7" nowrap="nowrap">${Resource.msg('order.total.shipping.cost','humm',null)}</td>
+		    <td class="table_detail left e s" nowrap="nowrap" width="11%"><label class="item-label" for="">${order.getShippingTotalNetPrice()}</label></td>
+		</tr> 
+		<tr>
+		    <td class="table_detail bold right e w" colspan="7" nowrap="nowrap">${Resource.msg('order.shipping.total','humm',null)}</td>
+		    <td class="table_detail left e s" nowrap="nowrap" width="11%"><label class="item-label" for=""></label>${order.getShippingTotalPrice()}</td>
+		</tr>
+		<tr>
+		    <td class="table_detail bold right e w" colspan="7" nowrap="nowrap">${Resource.msg('order.tax.total','humm',null)}</td>
+		    <td class="table_detail left e s" nowrap="nowrap" width="11%"><label class="item-label" for="">${order.getTotalTax()}</label></td>
+		</tr>
+		<tr>
+		    <td class="table_detail bold right e w s" colspan="7" nowrap="nowrap">${Resource.msg('order.total','humm',null)}</td>
+		    <td class="table_detail left e s" nowrap="nowrap" width="11%"><label class="item-label" for="">${order.getTotalGrossPrice()}</label></td>
+		</tr>
+    </tbody>
+</table>
+
+ <isscript>
+	var transactionHistory = paymentInstrument.custom.hummSettleHistory || "[]";
+	transactionHistory = JSON.parse(transactionHistory);
+ </isscript>
+ <isif condition="${transactionHistory.length > 0}">
+	<isset name="transactionHistoryType" value="${transactionHistory[transactionHistory.length-1].type}" scope="page">
+	<isset name="transactionHistoryStatus" value="${transactionHistory[transactionHistory.length-1].status}" scope="page">
+	 <h1>${Resource.msg('payment.transactions.header','humm',null)}</h1>
+	 <table border="0" cellpadding="4" cellspacing="0" width="75%" class="infobox n" align="center">
+		<tbody>
+			<tr>
+				<th class="table_header center e s w" nowrap="nowrap">${Resource.msg('payment.transactions.id','humm',null)}</th>
+				<th class="table_header center e s" nowrap="nowrap">${Resource.msg('payment.transactions.status','humm',null)}</th>
+				<th class="table_header center e s" nowrap="nowrap">${Resource.msg('payment.transactions.amount','humm',null)}</th>
+				<th class="table_header center e s" nowrap="nowrap">${Resource.msg('payment.transactions.date','humm',null)}</th>
+			</tr>
+			<isloop items=${transactionHistory} var="transaction" status="transStatus">
+				<tr>
+					<td class="center e s w" nowrap="nowrap">${transaction.id || '-'}</td>
+					<td class="center e s" nowrap="nowrap">${transaction.status || '-'}</td>
+					<td class="center e s" nowrap="nowrap">${transaction.amount ? (order.getCurrencyCode() + ' ' + transaction.amount) : '-'}</td>
+					<isset name="calendarDate" value="${dw.util.Calendar(transaction.date ? new Date(transaction.date.replace('Z','.000Z')) : new Date())}" scope="page"/>
+				    <isset name="creationDate" value="${dw.util.StringUtils.formatCalendar(dw.util.Calendar(calendarDate), 'yyyy-MM-dd HH:mm')}" scope="page"/>
+					<td class="center e s" nowrap="nowrap">${creationDate}</td>
+				</tr>
+			</isloop>
+		</tbody>
+	 </table>
+</isif>
+
+<isset name="paidAmount" value="${paymentInstrument.custom.hummPaidAmount || 0.0}" scope="page" />
+<isset name="payableAmount" value="${order.getTotalGrossPrice().getValue() - paidAmount}" scope="page" />
+<isset name="canRefund" value="${paymentInstrument.custom.hummTransactionStatus.toLowerCase() == 'completed' || (paidAmount > 0 &&  payableAmount < order.getTotalGrossPrice().getValue())}" scope="page" />
+
+<div class="title"><h1>${Resource.msg('operations.title','humm',null)} </h1></div>
+<div class="current-status">
+	<strong>${Resource.msg('operations.current.status','humm',null)}</strong>
+	<span> <isprint value="${paymentInstrument.custom.hummTransactionStatus}" /></span>
+</div>
+<isif condition="${canRefund}">
+		<button class="transaction-actions button" type="submit">
+			${Resource.msg('operations.refund.label','humm',null)}
+		</button>
+			<div class="operations-container">
+				<div class="operations-holder">
+					<table cellpadding="0" cellspacing="0">
+						<tr>
+							<td>
+								<label for="refund">${Resource.msg('operation.refund.amount','humm',null)}</label>
+							</td>
+							<td>
+								<input type="text" name="refundamount" value="${paidAmount}"/>
+								<span> ${order.getCurrencyCode()}</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label for="refund-reason">${Resource.msg('operation.refund.reason','humm',null)}</label>
+							</td>
+							<td>
+								<input type="text" name="refundreason" value=""/>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="error"></td>
+						</tr>
+						<tr>
+							<td class="center" colspan="2">
+								<button name="submit" class="button">${Resource.msg('operations.submit.label','humm',null)}</button>
+								<input type="hidden" name="orderno" value="${orderNo}">
+								<input type="hidden" name="maxrefundamount" value="${paidAmount}">
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+	<iselse>
+		<button class="button" disabled>
+			${Resource.msg('operations.no.actions','humm',null)}
+		</button>
+</isif>
+
+<script src="${URLUtils.staticURL('/js/transactions.js')}"></script>
+<script type="text/javascript"><isinclude template="application/appresources"/></script>
+</isdecorate>

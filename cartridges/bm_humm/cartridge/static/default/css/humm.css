@@ -1,0 +1,122 @@
+/******** Humm custom CSS *******/
+.calendar-table {
+	background-color: #FFFFFF;
+}
+.humm-module * {
+	box-sizing: border-box;
+}
+.humm-module h1 {
+	border-bottom: 0.09em solid #dadada;
+	color: #84bd00;
+	font-size: 1.625em;
+	font-weight: 600;
+	line-height: 1.2em;
+	padding: 0.625em 0;
+}
+.humm-module h2 {
+	font-size: 0.875em;
+	font-weight: normal;
+	margin: 0.3125em;
+	text-transform: none;
+}
+.humm-module .infobox {
+	margin-bottom:0.625em;
+}
+.humm-module .popup-holder {
+	width: 100%;
+    text-align: center;
+}
+.humm-module .operations-holder {
+    background-color: #fff;
+    display: none;
+    padding: 0.625em 0.5em 0.625em 0.9375em;
+    border: 0.0625em solid #A9A9A9;
+    margin:1.5625em 0;
+    width: 22.75em;
+}
+.humm-module .operations-holder input[type=text] {
+	width: 6em;
+	padding: 0 0.3125em;
+	text-align: right;
+}
+.humm-module .operations-holder input[type=radio] {
+	position: relative;
+    top: 0.125em;
+}
+.humm-module .operations-holder button {
+	border-radius: 0;
+    padding: 0.3125em 2.875em;
+    color: #fff;
+    background-color: #808080;
+    border-color: #808080;
+}
+.humm-module .operations-holder button:hover {
+	background-color: #000000;
+}
+.humm-module .operations-holder button[disabled]:hover {
+	color: #fff;
+}
+.humm-module .operations-holder table {
+	width: 18.375em;
+}
+.humm-module .operations-holder table td {
+	padding: 0.3125em 0;
+}
+.humm-module .operations-holder table td label {
+	margin:0;
+}
+.humm-module .operations-container .title {
+	
+}
+.humm-module .current-status {
+	margin-bottom: 1.25em;
+}
+.humm-module .current-status span{
+	color: #84bd00;
+    font-size: 1.25em;
+    font-weight: 600;
+}
+#filtertableProjects tfoot {
+	display: table-header-group;
+}
+#filtertableProjects tfoot tr th {
+	border-bottom: 0.09em solid #dadada;
+}
+.overview_documentation{
+	font-size: 1.25em;
+	padding-top: 1.375em;
+}
+table#documentation{
+	border-top: 0.09em solid #dadada;
+}
+.overview_title_description p{
+	font-size: 0.625em;
+	font-style: italic;
+}
+.humm-module .infobox {
+    border-top: 0.09em solid #dadada;
+}
+.infobox_title_search {
+    padding: 0.4em;
+}
+.order-list-content {
+    border-top: 0.09em solid #dadada;
+}
+.order-list-empty td {
+	padding-top: 0.75em;
+}
+.pagecursortxt.hide-10 .ten {
+	display: none;
+}
+.pagecursortxt.hide-50 .fifty {
+	display: none;
+}
+.pagecursortxt.hide-100 .hundred {
+	display: none;
+}
+.pagecursorbtn {
+	text-decoration: none;
+}
+a.button.show-all{
+	margin-left: 5em;
+}
