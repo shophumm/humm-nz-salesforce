@@ -79,17 +79,6 @@
           <config-property key="OnError" value="PIPELET_ERROR"/>
           <config-property key="ScriptFile" value="getOrders.js"/>
           <key-binding alias="log" key="ScriptLog"/>
-          <key-binding alias="orderNumber" key="OrderNumber"/>
-          <key-binding alias="pageNumber" key="PageNumber"/>
-          <key-binding alias="pageSize" key="PageSize"/>
-          <key-binding alias="endRow" key="endRow"/>
-          <key-binding alias="orderNumber" key="orderNumber"/>
-          <key-binding alias="orders" key="orders"/>
-          <key-binding alias="pageCount" key="pageCount"/>
-          <key-binding alias="pageNumber" key="pageNumber"/>
-          <key-binding alias="pageSize" key="pageSize"/>
-          <key-binding alias="totalOrderCount" key="totalOrderCount"/>
-          <key-binding alias="startRow" key="startRow"/>
         </pipelet-node>
         <node-display x="0" y="1"/>
         <branch basename="b2" source-connector="error">

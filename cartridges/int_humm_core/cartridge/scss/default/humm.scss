@@ -1,0 +1,114 @@
+.payment-image {
+    height: 2.65em;
+    position: relative;
+    top: -0.5em;
+}
+
+.humm-mode {
+        max-width: 400px;
+        font-size: 18px;
+        line-height: 1.2;
+    }
+
+    .humm-mode .hummleft {
+        text-align: left;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .hcolor {
+        color: #e68821 !important;
+    }
+
+    .halign {
+        text-align: center;
+    }
+
+.humm-checkout {
+    margin-bottom: 3em;
+    padding-left: 17em;
+}
+
+.humm-cart-container {
+    margin-top: 1em;
+}
+
+.footer-badge-container {
+    margin-top: -2.1875em;
+}
+
+.footer-badge-img {
+    background-color: #fff;
+    padding: 0.4em;
+    max-height: 3.75em;
+    max-width: 4.5em;
+}
+
+.footer-badge-list {
+    padding: 0.125em;
+}
+
+.footer-badge-list li {
+    display: inline;
+    float: none;
+}
+
+.loader-image {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    background: url('../images/Loading_icon.gif') 50% 50% no-repeat rgb(255, 255, 255);
+}
+
+.redirect-text {
+    padding: 6em 1em 5em 6.25em;
+    font-size: 2em;
+    font-style: italic;
+    margin: 0 auto;
+    float: right;
+}
+
+.notify-message {
+    padding-left: 5em;
+}
+
+.landing-overflow {
+    overflow-x: hidden;
+}
+
+$tablet: 37.5em;
+
+@media only screen and (max-width: $tablet) {
+    .humm-banner a#humm-more-info-small {
+        min-width: unset;
+    }
+}
+
+$phone: 30em;
+
+@media only screen and (max-width: $phone) {
+    #humm-more-info-small p {
+        width: 40vw;
+        vertical-align: middle;
+        float: left;
+        line-height: 2.375em;
+    }
+
+    #humm-more-info-small img.logo {
+        vertical-align: middle;
+        float: left;
+        line-height: 2.375em;
+    }
+
+    #humm-more-info-small .more-info-btn {
+        vertical-align: middle;
+        float: left;
+        line-height: 2.375em;
+    }
+}

@@ -1,19 +1,22 @@
 /*
 *    Service call for communication between Demandware cartridge and humm REST API
 */
+importPackage(dw.svc);
 var LocalServiceRegistry = require('dw/svc/LocalServiceRegistry');
 var Resource = require('dw/web/Resource');
+
 
 // Lib Includes
 var hummUtils = require('*/cartridge/scripts/utils/hummUtils');
 var LogUtils = require('*/cartridge/scripts/utils/hummLogUtils');
+
 
 // Global Variables
 var Utils = {};
 var Logger = LogUtils.getLogger('ServiceUtils');
 
 /*
-*    Communicates with Humm API
+*    Communicates with humm API
 */
 Utils.serviceCall = function (method, endPoint, request) {
     var endPointUrl = endPoint;
@@ -21,20 +24,21 @@ Utils.serviceCall = function (method, endPoint, request) {
     var localService;
     var newRequest;
     var errorObject;
+    var service: Service;
 
+    var requestObj = JSON.parse(request);
     localService = LocalServiceRegistry.createService('humm.http', {
         createRequest: function (service, args) {
-            service.setURL(args.endPointUrl);
-            service.setRequestMethod(args.method);
-            service.addHeader('Content-Type', 'application/json');
-
-            return args.request;
+            service.addHeader('Content-Type', 'text/json');
+            return JSON.stringify(args.request);
         },
         parseResponse: Utils.serviceParseResponse,
         getRequestLogMessage: function (paramRequest) {
+        	Logger.debug('paramRequest: ' + JSON.stringify(paramRequest));
             return hummUtils.getFilteredLogMessage(paramRequest);
         },
         getResponseLogMessage: function (response) {
+        	Logger.debug('response: ' + response);
             return response;
         }
     });
@@ -44,10 +48,24 @@ Utils.serviceCall = function (method, endPoint, request) {
     serviceArgs = {
         method: method,
         endPointUrl: endPointUrl,
-        request: newRequest
+        request: JSON.parse(newRequest)
     };
 
-    var result = localService.call(serviceArgs);
+    function makeCall(service,params) {
+        try {
+				result = service.call(params);
+			}
+		catch (e) {
+			Logger.error('Error on servie call: ' + e);
+		}
+        return result;
+    }
+    service = localService;
+    service.setURL(serviceArgs.endPointUrl);
+    service.setRequestMethod(serviceArgs.method);
+    service.addHeader('Content-Type', 'text/json');
+    var result = makeCall(service, serviceArgs);
+    Logger.debug("service {0} {1} ",service,result);
 
     if (result.status !== 'OK') {
         errorObject = Utils.getErrorResponses(result);

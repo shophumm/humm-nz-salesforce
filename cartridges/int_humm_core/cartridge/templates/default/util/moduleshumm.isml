@@ -3,9 +3,12 @@
 <iscomment>
     Show the Humm payment widget in PDP
 </iscomment>
-
 <ismodule template="product/components/hummpaymentwidget"
-    name="hummpaymentwidget"
-    attribute="hummprice"
+    name="paymentwidget"
+    attribute="price"
     attribute="productid" 
+/>
+<ismodule template="checkout/billing/hummpaymentbilling"
+    name="paymentbilling"
+    attribute="price"
 />

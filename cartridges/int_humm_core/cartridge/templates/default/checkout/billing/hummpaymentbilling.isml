@@ -1,0 +1,91 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<isscript>
+	   var sitePreferences = require("~/cartridge/scripts/utils/hummUtils").getSitePreference();
+	   var hummEnable = sitePreferences.hummEnabled;
+	   var hummPaymentWidgetType = sitePreferences.hummPaymentWidgetType;
+	   var hummWidgetURl = sitePreferences.hummWidgetURl;
+	   let deposit = pdict.hummprice * 0.2;
+	   deposit = Math.floor(deposit * Math.pow(10, 2)) / Math.pow(10, 2);
+	   let productPriceDividedByFive = 0;
+	   let productPriceDividedByTen = 0;
+	   let productPriceDividedByTenF = 0;
+	   let productPriceDividedByTwenty = 0;
+      
+	   let checkSmallThing = 'y';
+	    if ( pdict.hummprice > 1000 ) {
+	      productPriceDividedByTenF = pdict.hummprice * 0.8 / 9;
+	      productPriceDividedByTenF = Math.floor(productPriceDividedByTenF * Math.pow(10, 2)+0.5) / Math.pow(10, 2);
+	      productPriceDividedByTwenty  = pdict.hummprice * 0.8 /  19;
+	      productPriceDividedByTwenty = Math.floor(productPriceDividedByTwenty * Math.pow(10, 2)+0.5) / Math.pow(10, 2);
+	      checkSmallThing = 'n'; 
+	    }
+	    
+	    if ( pdict.hummprice <= 1000 ) {
+	      productPriceDividedByFive = pdict.hummprice * 0.8 / 4;
+	      productPriceDividedByFive = Math.floor(productPriceDividedByFive * Math.pow(10, 2)+0.5) / Math.pow(10, 2);
+	      productPriceDividedByTen  = pdict.hummprice * 0.8/  9;
+	      productPriceDividedByTen  =  Math.floor(productPriceDividedByTen * Math.pow(10, 2)+0.5) / Math.pow(10, 2);
+	      checkSmallThing = 'y'; 
+	    } 
+	    
+</isscript>
+       <div class="humm-mode">
+        <table>
+        <th><span class="hummtitle">Pay in slices, No interest ever.</span></th>
+        <tbody>
+        <isif condition="${checkSmallThing == 'y' }">
+        <tr>
+            <td><span class="hummleft"><b>5 x fortnightly:</b></span></td>
+        </tr>
+        <tr>
+            <td><div class="hcolor"><b>&#9679;</b>AU$${deposit} <span> today</span></div> </td>
+        </tr>
+        <tr>
+            <td><div class="hcolor"><b>&#9679;</b>AU$${productPriceDividedByFive}<span> x 4 fortnightly payments</span> </div></td>
+        </tr>
+        <tr>
+            <td><span class="hummleft"><b>10 x weekly:</b></span></td>
+        </tr>
+        <tr>
+            <td><div class="hcolor"> <b>&#9679;</b>AU$${deposit}&nbsp;<span> today</span></div></td>
+        </tr>
+        <tr>
+            <td><div class="hcolor"> <b>&#9679;</b>AU$${productPriceDividedByTen}<span> x 9 weekly payments</span></div></td>
+        </tr>
+        </isif>
+        
+        <isif condition="${checkSmallThing == 'n' }">
+        <tr>
+            <td><span class="hummleft"><b>10 x fortnightly:</b></span></td>
+        </tr>
+        <tr>
+            <td><span class="hcolor">&#9679;AU$${deposit} </span> today</td>
+        </tr>
+        <tr>
+            <td><span class="hcolor">&#9679;AU$${productPriceDividedByTenF}</span> x  9 fortnightly payments</td>
+        </tr>
+     
+        <tr>
+            <td><span class="hummleft"><b>20 x weekly:</b></span></td>
+        </tr>
+        <tr>
+            <td><span class="hcolor"> &#9679;AU$${deposit}</span>&nbsp;today</td>
+        </tr>
+        <tr>
+            <td><span class="hcolor"> &#9679;AU$${productPriceDividedByTwenty}</span> x 19 weekly payments</td>
+        </tr>
+        </isif>
+        
+        <tr>
+            <td><span> <a class= "humm-terms" href="https://www.shophumm.com.au/terms-and-conditions/" target="_blank">Terms&Conditions</a></span></td>
+        </tr>
+         <tr>
+            <td class="describle"><span>You will be redirected to the HUMM Website when you select Continue to Payment.</span>
+               <p>HUMM is not available for billing address outside of Australia.Items purchased with HUMM cannot be
+                 refunded in-store but exchanges will be accepted. For refunds,items must be returned to our Online Store via post.</p>
+           </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

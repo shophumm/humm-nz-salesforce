@@ -65,7 +65,7 @@ function generateSignature(order) {
         }
     }
 
-    Logger.debug('Plain Text:' + plainText);
+    Logger.debug('Signature Plain Text:' + plainText);
 
     var signature = hashContent(plainText, apiKey);
 

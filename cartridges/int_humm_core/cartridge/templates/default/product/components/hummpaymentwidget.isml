@@ -1,12 +1,10 @@
 <iscontent type="text/html" charset="UTF-8" compact="true"/>
-
 <isscript>
 	 var sitePreferences = require("~/cartridge/scripts/utils/hummUtils").getSitePreference();
 	 var hummEnable = sitePreferences.hummEnabled;
 	 var hummPaymentWidgetType = sitePreferences.hummPaymentWidgetType;
 	 var hummWidgetURl = sitePreferences.hummWidgetURl;
 </isscript>
-
 <isif condition="${hummEnable == true}">
 	<div class="hummpaymentwidget_${pdict.productid}"></div>
 	<isif condition="${hummPaymentWidgetType== 'littleOnly'}">

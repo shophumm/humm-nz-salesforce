@@ -11,7 +11,6 @@ var LogUtils = require('~/cartridge/scripts/utils/hummLogUtils');
 var Logger = LogUtils.getLogger('Utils');
 
 var hummUtils = {
-
     /**
      * Get humm configuration values from Business Manager
      * @returns {Object} configuration
@@ -26,6 +25,7 @@ var hummUtils = {
         var hummMaxOrderTotal = Site.getCurrent().getCustomPreferenceValue('hummMaxOrderTotal');
         var hummWidgetURl = Site.getCurrent().getCustomPreferenceValue('hummWidgetURL') || '';
         var hummPaymentWidgetType = Site.getCurrent().getCustomPreferenceValue('hummPaymentWidgetType').value || 'both';
+        var hummAPICallbackEnable = Site.getCurrent().getCustomPreferenceValue('isEnableHummAPICallback');
 
         if (hummMerchantID === '' || hummGatewayKey === '' || hummGatewayURL === '' || hummRefundEndpoint === '') {
             Logger.error('Error: Humm Business Manager configurations are missing.');
@@ -40,7 +40,8 @@ var hummUtils = {
             hummMinOrderTotal: hummMinOrderTotal,
             hummMaxOrderTotal: hummMaxOrderTotal,
             hummWidgetURl: hummWidgetURl,
-            hummPaymentWidgetType: hummPaymentWidgetType
+            hummPaymentWidgetType: hummPaymentWidgetType,
+            hummAPICallbackEnable:hummAPICallbackEnable
         };
 
         return config;
@@ -73,7 +74,6 @@ var hummUtils = {
     getPaymentMethod: function (requestParams) {
         var paymentInstrument = this.getPaymentInstrument(requestParams);
         var paymentMethod = paymentInstrument.paymentMethod;
-
         return paymentMethod;
     },
     /**
@@ -82,17 +82,17 @@ var hummUtils = {
     * @returns {string} jsonString
     */
     getFilteredLogMessage: function (requestParams) {
-        var requestJSON = JSON.parse(requestParams);
+          var requestJSON = JSON.parse(requestParams);
+          Logger.error('refund call back. {0} ',JSON.stringify(requestParams));
+      
+          if (requestJSON.signature) {
+              requestJSON.signature = '***';
+          }
 
-        if (requestJSON.signature) {
-            requestJSON.signature = '***';
-        }
-
-        if (requestJSON.x_merchant_number) {
-            requestJSON.x_merchant_number = '***';
-        }
-
-        return JSON.stringify(requestJSON);
+         if (requestJSON.x_merchant_number) {
+             requestJSON.x_merchant_number = '***';
+         }
+         return JSON.stringify(requestParams);
     }
 };
 

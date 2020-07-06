@@ -5,6 +5,7 @@
 var OrderMgr = require('dw/order/OrderMgr');
 var Transaction = require('dw/system/Transaction');
 var Resource = require('dw/web/Resource');
+var OrderStand = require('dw/order/Order');
 
 var Utils = require('*/cartridge/scripts/utils/hummUtils');
 var LogUtils = require('*/cartridge/scripts/utils/hummLogUtils');
@@ -21,8 +22,8 @@ function updateOrderStatus(orderNo) {
 
     try {
         Transaction.begin();
-        Order.setPaymentStatus(Order.PAYMENT_STATUS_NOTPAID);
-        Order.setStatus(Order.ORDER_STATUS_CANCELLED);
+        Order.setPaymentStatus(OrderStand.PAYMENT_STATUS_NOTPAID);
+        Order.setStatus(OrderStand.ORDER_STATUS_CANCELLED);
         Transaction.commit();
     } catch (e) {
         Transaction.rollback();
@@ -84,7 +85,7 @@ function saveHistory(paymentInstrument, settleHistory, amount) {
  * @returns {Object} response - response
  * */
 function callAction(request) {
-    var refundService = require('~/cartridge/scripts/utils/serviceUtils');
+    var refundService = require('~/cartridge/scripts/utils/ServiceUtils');
     var endpoint = configuration.hummRefundEndpoint;
     var response = refundService.serviceCall('POST', endpoint, JSON.stringify(request));
 
@@ -119,7 +120,7 @@ function refund(orderNo, amount, refundReason) {
     }
 
     var merchantID = configuration.hummMerchantID;
-    var signature = require('~/cartridge/scripts/refundSignature').getSignature(merchantID, transactionID, newAmount, refundReason);
+    var signature = require('~/cartridge/scripts/RefundSignature').getSignature(merchantID, transactionID, newAmount, refundReason);
 
     request = {
         x_merchant_number: merchantID,
@@ -138,9 +139,9 @@ function refund(orderNo, amount, refundReason) {
         status = true;
         saveCustomAttributes(paymentInstrument, (paidAmount - newAmount).toFixed(2), transactionID);
         saveHistory(paymentInstrument, settleHistory, newAmount);
-        Logger.debug('settle history in refund transaction : ' + paymentInstrument.custom.hummSettleHistory);
+        Logger.debug('settle history in refund transaction : ' + paymentInstrument.custom.hummSettleHistory + paidAmount + newAmount);
 
-        if (newAmount === paidAmount) {
+        if (newAmount == paidAmount) {
             updateOrderStatus(orderNo);
         }
     } else if (response !== null && (response && (response.httpStatus === '400' || response.httpStatus === '401' || response.httpStatus === '0'))) {

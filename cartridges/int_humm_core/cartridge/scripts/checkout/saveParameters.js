@@ -24,9 +24,9 @@ function saveParameters(order, paymentInstrument, paymentProcessor, request) {
     payInstrument.paymentTransaction.transactionID = order.orderNo;
     localOrder.custom.isHummOrder = true;
 
-    if (paymentStatus === 'completed') {
+   if (paymentStatus === 'completed') {
         localOrder.setPaymentStatus(Order.PAYMENT_STATUS_PAID);
-    }
+   }
 
     payInstrument.custom.hummTransactionID = hummTransactionID;
     payInstrument.custom.hummPaidAmount = paidAmount;
