@@ -76,7 +76,7 @@ function HandleResponse(){
 	} catch (e) {
 		Logger.debug("end:x_cancel_exception {0}", e);
 	} finally {
-		var redirectURL = URLUtils.https("Home-Show");
+		var redirectURL = URLUtils.https('DeclinedRedirect-Declined', 'paymentStatus', request.httpParameterMap.paymentStatus.stringValue ? request.httpParameterMap.paymentStatus.stringValue: 'cancelled');
 		app.getView({
 			HummRedirectUrl : redirectURL
 		}).render('checkout/redirect');
