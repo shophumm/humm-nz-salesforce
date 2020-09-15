@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<library xmlns="http://www.demandware.com/xml/impex/library/2006-10-31" library-id="RefArchSharedLibrary">
+<library xmlns="http://www.demandware.com/xml/impex/library/2006-10-31" library-id="SiteGenesisSharedLibrary">
 
     <content content-id="footer-humm-badge">
         <display-name xml:lang="x-default">Footer Humm Secure Badge</display-name>
         <online-flag>true</online-flag>
         <searchable-flag>false</searchable-flag>
         <page-attributes/>
-         <custom-attributes>
+        <custom-attributes>
             <custom-attribute attribute-id="body" xml:lang="x-default">&lt;h3 class="humm-footer-heading"&gt;SHOP SECURELY WITH&lt;/h3&gt;&#13;
-    &lt;ul  class="footer-badge-list"  style="padding:2px"&gt;&#13;
-         &lt;li&gt;&lt;a href="https://shophumm.com.au/" title="Go to Humm"&gt;&#13;
-        &lt;img  class="footer-badge-img"   src="https://widgets.shophumm.com.au/content/images/logo-orange.svg" &#13;
-        alt="Humm" /&gt;&lt;/a&gt;&lt;/li&gt;&#13;
-   &lt;/ul&gt;</custom-attribute>
+                &lt;ul  class="footer-badge-list"  style="padding:2px"&gt;&#13;
+                &lt;li&gt;&lt;a href="https://shophumm.com.au/" title="Go to Humm"&gt;&#13;
+                &lt;img  class="footer-badge-img"   src="https://widgets.shophumm.co.nz/content/images/logo-orange.svg" &#13;
+                alt="Humm" /&gt;&lt;/a&gt;&lt;/li&gt;&#13;
+                &lt;/ul&gt;</custom-attribute>
         </custom-attributes>
     </content>
-	
-	<content content-id="humm-banner">
-		<display-name xml:lang="x-default">Humm Homepage Banner</display-name>
+
+    <content content-id="humm-banner">
+        <display-name xml:lang="x-default">Humm Homepage Banner</display-name>
         <online-flag>true</online-flag>
         <searchable-flag>false</searchable-flag>
         <page-attributes/>
         <custom-attributes>
             <custom-attribute attribute-id="body" xml:lang="x-default">&lt;div class="humm-banner"&gt;&#13;
-         &lt;script id="humm-banner"  src="https://widgets.shophumm.com.au/content/scripts/more-info-small-slices.js"&gt;&lt;/script&gt;&#13;
-&lt;/div&gt;&#13;
-&lt;style&gt;&#13;
-.humm-banner a#humm-more-info-small {&#13;
-  max-width: unset;&#13;
-}&#13;
-&lt;/style&gt;&#13;
-&lt;!-- END:humm-banner --&gt;</custom-attribute>
+                &lt;script id="humm-banner"  src="https://widgets.shophumm.co.nz/content/scripts/more-info-small-slices.js"&gt;&lt;/script&gt;&#13;
+                &lt;/div&gt;&#13;
+                &lt;style&gt;&#13;
+                .humm-banner a#humm-more-info-small {&#13;
+                max-width: unset;&#13;
+                }&#13;
+                &lt;/style&gt;&#13;
+                &lt;!-- END:humm-banner --&gt;</custom-attribute>
         </custom-attributes>
     </content>
 
@@ -40,11 +40,11 @@
         <searchable-flag>false</searchable-flag>
         <page-attributes/>
         <custom-attributes>
-            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;script id="humm-banner" src="https://widgets.shophumm.com.au/content/scripts/more-info-small.js"&gt;&lt;/script&gt;</custom-attribute>
+            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;script id="humm-banner" src="https://widgets.shophumm.co.nz/content/scripts/more-info-small.js"&gt;&lt;/script&gt;</custom-attribute>
         </custom-attributes>
     </content>
 
-	<content content-id="humm-checkout">
+    <content content-id="humm-checkout">
         <display-name xml:lang="x-default">Humm checkout content</display-name>
         <description xml:lang="x-default">Humm checkout content</description>
         <online-flag>true</online-flag>
@@ -52,18 +52,18 @@
         <page-attributes/>
         <custom-attributes>
             <custom-attribute attribute-id="body" xml:lang="x-default">&lt;div class="humm-checkout"&gt;&#13;
-      &lt;strong&gt;You'll be redirected to the Humm website when you place an order.&lt;/strong&gt;&#13;
-&lt;/div&gt;</custom-attribute>
+                &lt;strong&gt;You'll be redirected to the Humm website when you place an order.&lt;/strong&gt;&#13;
+                &lt;/div&gt;</custom-attribute>
         </custom-attributes>
     </content>
 
-	<content content-id="humm-landing">
+    <content content-id="humm-landing">
         <display-name xml:lang="x-default">Humm Landing</display-name>
         <online-flag>true</online-flag>
         <searchable-flag>false</searchable-flag>
         <page-attributes/>
         <custom-attributes>
-            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;script id="humm-landing-page" src="https://widgets.shophumm.com.au/content/scripts/landing-page.js"&gt;&lt;/script&gt;</custom-attribute>
+            <custom-attribute attribute-id="body" xml:lang="x-default">&lt;script id="humm-landing-page" src="https://widgets.shophumm.co.nz/content/scripts/landing-page-little-online.js"&gt;&lt;/script&gt;</custom-attribute>
         </custom-attributes>
     </content>
 

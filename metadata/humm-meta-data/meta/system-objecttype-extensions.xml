@@ -132,7 +132,7 @@
                 <min-length>0</min-length>
             </attribute-definition>
             <attribute-definition attribute-id="isEnableHummAPICallback">
-                <display-name xml:lang="x-default">isEnableOxipayAPICallback</display-name>
+                <display-name xml:lang="x-default">isEnableHummNZAPICallback</display-name>
                 <type>boolean</type>
                 <mandatory-flag>false</mandatory-flag>
                 <externally-managed-flag>false</externally-managed-flag>

@@ -8,10 +8,13 @@
 <isif condition="${hummEnable == true}">
 	<div class="hummpaymentwidget_${pdict.productid}"></div>
 	<isif condition="${hummPaymentWidgetType== 'littleOnly'}">
-		<script src="${hummWidgetURl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}&LittleOnly"></script>
+		<script src="${hummWidgetURl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}&little=f5"></script>
+		<script src="${hummWidgetURl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}&little=w10"></script>
 	<iselseif condition="${hummPaymentWidgetType == 'bigOnly'}">
-		<script src="${hummWidgetURl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}&BigOnly"></script>
+		<script src="${hummWidgetURl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}&little=f5"></script>
+		<script src="${hummWidgetURl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}&little=w10"></script>
 	<iselseif condition="${hummPaymentWidgetType == 'both'}">
-		<script src="${hummWidgetURl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}"></script>
+		<script src="${hummWidgetURl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}&little=f5"></script>
+		<script src="${hummWidgetURl}?productPrice=${Number(pdict.hummprice)}&element=.hummpaymentwidget_${pdict.productid}&little=w10"></script>
 	</isif>
 </isif>
